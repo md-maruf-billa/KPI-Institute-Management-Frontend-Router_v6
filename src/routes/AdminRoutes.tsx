@@ -5,7 +5,7 @@ import CreateAdmin from '../pages/Admin/CreateAdmin'
 import CreateFaculty from '../pages/Admin/CreateFaculty'
 import CreateStudent from '../pages/Admin/CreateStudent'
 
-// type define
+// Type definitions
 type TRoutes = {
   path: string
   element: ReactNode
@@ -18,6 +18,7 @@ type TLayoutes = {
   children?: TLayoutes[]
 }
 
+// RoutePaths definition
 const RoutePaths = [
   {
     key: 0,
@@ -57,33 +58,31 @@ const RoutePaths = [
   }
 ]
 
-// for routes
-export const AdminChildRoutes: TRoutes[] = []
+// Using reduce for AdminChildRoutes
+export const AdminChildRoutes: TRoutes[] = RoutePaths.reduce<TRoutes[]>(
+  (acc, el) => {
+    if (el.element) {
+      acc.push({ path: el.path, element: el.element })
+    }
+    if (el.children) {
+      acc.push(
+        ...el.children.map(child => ({
+          path: child.path,
+          element: child.element
+        }))
+      )
+    }
+    return acc
+  },
+  []
+)
 
-RoutePaths.forEach(el => {
-  if (el.label && el.path && el.element) {
-    AdminChildRoutes.push({
-      path: el.path,
-      element: el.element
-    })
-  }
-  if (el.children) {
-    el.children.forEach(child => {
-      AdminChildRoutes.push({
-        path: child.path,
-        element: child.element
-      })
-    })
-  }
-})
-
-//  for layout design
-export const AdminChildItemsForLayout: TLayoutes[] = []
-
-RoutePaths.forEach(el => {
-  if (el.label && el.path && el.element) {
-    // Add routes with no children directly
-    AdminChildItemsForLayout.push({
+// Using reduce for AdminChildItemsForLayout
+export const AdminChildItemsForLayout: TLayoutes[] = RoutePaths.reduce<
+  TLayoutes[]
+>((acc, el) => {
+  if (el.element) {
+    acc.push({
       key: el.key,
       path: el.path,
       label: el.label,
@@ -91,18 +90,18 @@ RoutePaths.forEach(el => {
     })
   }
   if (el.children) {
-    // Add routes with children
-    AdminChildItemsForLayout.push({
+    acc.push({
       key: el.key,
       label: el.label,
       icon: el.icon,
       path: el.path,
-      children: el.children.map(elm => ({
-        key: elm.key,
-        path: elm.path,
-        label: elm.label,
-        icon: elm.icon
+      children: el.children.map(child => ({
+        key: child.key,
+        path: child.path,
+        label: child.label,
+        icon: child.icon
       }))
     })
   }
-})
+  return acc
+}, [])
