@@ -21,3 +21,16 @@
     align-items: center;
     justify-content: center;
 }
+
+.form{
+    
+    width: 100%;
+}
+
+.login-form-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

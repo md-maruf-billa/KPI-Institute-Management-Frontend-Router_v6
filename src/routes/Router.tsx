@@ -5,7 +5,8 @@ import { GenarateRoutes } from '../utils/RouteGenarator'
 import { AdminRoutesPaths } from './AdminRoutes'
 import { FacultyRoutesPaths } from './FacultyRoutes'
 import { StudentRoutePaths } from './StudentRoutes'
-
+import Login from '../pages/Auth/Login'
+import ProctedRoute from '../pages/Auth/ProctedRoute'
 
 const Router = createBrowserRouter([
   {
@@ -14,7 +15,11 @@ const Router = createBrowserRouter([
   },
   {
     path: '/admin',
-    element: <App />,
+    element: (
+      <ProctedRoute>
+        <App />
+      </ProctedRoute>
+    ),
     children: GenarateRoutes(AdminRoutesPaths)
   },
   {
@@ -27,6 +32,10 @@ const Router = createBrowserRouter([
     element: <App />,
     children: GenarateRoutes(StudentRoutePaths)
   },
+  {
+    path: '/login',
+    element: <Login />
+  }
 ])
 
 export default Router
