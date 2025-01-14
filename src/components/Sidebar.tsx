@@ -62,7 +62,7 @@ const Sidebar = () => {
       <Menu
         theme='dark'
         mode='inline'
-        defaultSelectedKeys={['4']}
+        defaultSelectedKeys={['0']}
         items={currentLayouts}
       />
     </Sider>

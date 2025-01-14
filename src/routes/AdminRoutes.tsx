@@ -2,12 +2,15 @@ import { createElement } from 'react'
 import {
   UsergroupAddOutlined,
   UserOutlined,
-  HomeOutlined
+  HomeOutlined,
+  CodeSandboxOutlined,
+  WalletOutlined
 } from '@ant-design/icons'
 import CreateAdmin from '../pages/Admin/CreateAdmin'
 import CreateFaculty from '../pages/Admin/CreateFaculty'
 import CreateStudent from '../pages/Admin/CreateStudent'
 import AdminOverview from '../pages/Admin/AdminOverview'
+import AcademicSemester from '../pages/Admin/AcademicSemester'
 
 
 // RoutePaths definition
@@ -47,6 +50,22 @@ export const AdminRoutesPaths = [
         icon: createElement(UserOutlined),
         element: <CreateStudent />
       }
+    ]
+  },
+  {
+    key: 5,
+    label: 'Semester Management',
+    path: '/admin',
+    element: null,
+    icon: createElement(CodeSandboxOutlined),
+    children: [
+      {
+        key: 6,
+        path: 'all-semester',
+        label: "All Academic Semester",
+        icon: createElement(WalletOutlined),
+        element: <AcademicSemester />
+      },
     ]
   }
 ]
