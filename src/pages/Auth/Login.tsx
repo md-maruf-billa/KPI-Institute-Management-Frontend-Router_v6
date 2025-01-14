@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode'
 import { useAppDispatch } from '../../redux/hooks'
 import { setUser } from '../../redux/features/auth/authSlice'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 type TAdminInfo = {
   id: string
@@ -24,10 +25,16 @@ const Login = () => {
   const [login] = useLoginMutation()
 
   const handelLogin = async (data: TAdminInfo) => {
-    const res = await login(data).unwrap()
-    const user = jwtDecode(res.data.accessToken)
-    dispatch(setUser({ user, token: res.data.accessToken }))
-    navigate(state)
+    const toastId = toast.loading('Loging .......', {})
+    try {
+      const res = await login(data).unwrap()
+      const user = jwtDecode(res.data.accessToken)
+      dispatch(setUser({ user, token: res.data.accessToken }));
+      toast.success("Login success", {id: toastId })
+      navigate(state)
+    } catch (err) {
+      toast.error("Login failed", {id: toastId})
+    }
   }
   return (
     <div className='login-form-container'>

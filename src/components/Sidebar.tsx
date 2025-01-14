@@ -1,11 +1,15 @@
-import { Layout, Menu } from 'antd'
+import { Button, Layout, Menu } from 'antd'
 import { GenarateSideBarItems } from '../utils/LayoutItemsGenarator'
 import { AdminRoutesPaths } from '../routes/AdminRoutes'
 import Logo from '../assets/Logo'
 import { Link } from 'react-router-dom'
 import { FacultyRoutesPaths } from '../routes/FacultyRoutes'
 import { StudentRoutePaths } from '../routes/StudentRoutes'
-const { Sider } = Layout
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { logout } from '../redux/features/auth/authSlice'
+import { toast } from 'sonner'
+import { selectCurrentUser } from '../redux/store'
+const { Sider, Header } = Layout
 
 const userRole = {
   ADMIN: 'admin',
@@ -13,32 +17,43 @@ const userRole = {
   FACULTY: 'faculty'
 }
 const Sidebar = () => {
-  const role = 'admin'
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectCurrentUser)
   let currentLayouts
 
-  switch (role) {
+  switch (user!.role) {
     case userRole.ADMIN:
-        currentLayouts = GenarateSideBarItems(AdminRoutesPaths, userRole.ADMIN)
+      currentLayouts = GenarateSideBarItems(AdminRoutesPaths, userRole.ADMIN)
       break
     case userRole.FACULTY:
-        currentLayouts = GenarateSideBarItems(FacultyRoutesPaths, userRole.FACULTY)
+      currentLayouts = GenarateSideBarItems(
+        FacultyRoutesPaths,
+        userRole.FACULTY
+      )
       break
     case userRole.STUDENT:
-        currentLayouts = GenarateSideBarItems(StudentRoutePaths, userRole.STUDENT)
+      currentLayouts = GenarateSideBarItems(StudentRoutePaths, userRole.STUDENT)
       break
 
     default:
       break
   }
 
+  const handelLogout = () => {
+    dispatch(logout())
+    toast.success("You have logged out")
+  }
   return (
     <Sider
       breakpoint='lg'
       collapsedWidth='0'
-      onBreakpoint={broken => {
-        console.log(broken)
-      }}
+
     >
+      <Header>
+        <Button type='dashed' onClick={handelLogout}>
+          Logout
+        </Button>
+      </Header>
       <div className='logo-container'>
         <Link to='/' className='logo'>
           <Logo />

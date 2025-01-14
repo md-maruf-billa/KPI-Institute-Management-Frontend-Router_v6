@@ -1,9 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { TAuthState } from '../../../Types'
 
-type TAuthState = {
-  user: null | object
-  token: null | string
-}
 
 const initialState: TAuthState = {
   user: null,
@@ -19,7 +16,7 @@ const AuthSlice = createSlice({
       state.user = user
       state.token = token
     },
-    logout: state => {
+    logout: (state) => {
       state.user = null
       state.token = null
     }
