@@ -2,7 +2,7 @@ import { useGetAllAcademicSemestersQuery } from "../../redux/features/academicSe
 
 
 const AcademicSemester = () => {
-    const { data,isLoading,isError } = useGetAllAcademicSemestersQuery(undefined);
+    const { data, isLoading, isError } = useGetAllAcademicSemestersQuery(undefined);
     console.log(data)
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>
@@ -10,9 +10,13 @@ const AcademicSemester = () => {
     </div>;
     return (
         <div>
-            This is all academic semester page
+            <video
+                src="https://drive.google.com/uc?id=1JDoLUfIe41ktK0WOn9Nds-BgVSSP9Id2&export=download"
+                controls
+            />
         </div>
     );
+
 };
 
 export default AcademicSemester;
