@@ -1,8 +1,6 @@
 import { Button, Layout, Menu } from 'antd'
 import { GenarateSideBarItems } from '../utils/LayoutItemsGenarator'
 import { AdminRoutesPaths } from '../routes/AdminRoutes'
-import Logo from '../assets/Logo'
-import { Link } from 'react-router-dom'
 import { FacultyRoutesPaths } from '../routes/FacultyRoutes'
 import { StudentRoutePaths } from '../routes/StudentRoutes'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
@@ -49,22 +47,20 @@ const Sidebar = () => {
       collapsedWidth='0'
 
     >
-      <Header>
-        <Button type='dashed' onClick={handelLogout}>
-          Logout
-        </Button>
-      </Header>
-      <div className='logo-container'>
-        <Link to='/' className='logo'>
-          <Logo />
-        </Link>
-      </div>
+      <Header></Header>
+
       <Menu
         theme='dark'
         mode='inline'
         defaultSelectedKeys={['0']}
         items={currentLayouts}
       />
+
+
+      <Button className='logout-button' color='gold' onClick={handelLogout}>
+        Logout
+      </Button>
+
     </Sider>
   )
 }

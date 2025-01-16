@@ -23,31 +23,22 @@
     height: 60px;
 }
 
-.form{
-    
-    width: 100%;
-}
 
 .login-form-container{
     display: flex;
     justify-content: center;
     align-items: center;
     border: 0.5px solid #00152975;
-    width: fit-content;
-    padding: 20px;
+    padding: 60px;
     border-radius: 16px;
     background-color: white;
     
 }
-.login-form-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 18px;
-}
+
 .login-form-content h1{
     font-family: "Playwrite IN", serif;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .login-page{
@@ -60,12 +51,15 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-.custom-input-field{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 8px;
-}
-.custom-input-field label{
-    color: rgb(35, 34, 34);
+
+
+
+.logout-button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgb(153, 11, 11);
+    color: white;
+    border: none;
 }

@@ -4,13 +4,20 @@ import {
   UserOutlined,
   HomeOutlined,
   CodeSandboxOutlined,
-  WalletOutlined
+  WalletOutlined,
+  ExperimentOutlined
 } from '@ant-design/icons'
 import CreateAdmin from '../pages/Admin/CreateAdmin'
 import CreateFaculty from '../pages/Admin/CreateFaculty'
 import CreateStudent from '../pages/Admin/CreateStudent'
 import AdminOverview from '../pages/Admin/AdminOverview'
-import AcademicSemester from '../pages/Admin/AcademicSemester'
+import AcademicSemester from '../pages/Admin/AcademicManagement/AcademicSemester'
+import CreateAcademicSemester from '../pages/Admin/AcademicManagement/CreateAcademicSemester'
+import CreateAcademicFaculty from '../pages/Admin/AcademicManagement/CreateAcademicFaculty'
+import AcademicFaculty from '../pages/Admin/AcademicManagement/AcademicFaculty'
+import CreateAcademicDepartment from '../pages/Admin/AcademicManagement/CreateAcademicDepartment'
+import AcademicDepartment from '../pages/Admin/AcademicManagement/AcademicDepartment'
+
 
 
 // RoutePaths definition
@@ -54,17 +61,52 @@ export const AdminRoutesPaths = [
   },
   {
     key: 5,
-    label: 'Semester Management',
+    label: 'Academic Management',
     path: '/admin',
     element: null,
     icon: createElement(CodeSandboxOutlined),
     children: [
       {
         key: 6,
-        path: 'all-semester',
-        label: "All Academic Semester",
+        path: 'create-academic-semester',
+        label: "Create A. Semester",
+        icon: createElement(ExperimentOutlined),
+        element: <CreateAcademicSemester />
+      },
+      {
+        key: 7,
+        path: 'runnig-academic-semester',
+        label: "Runnig A. Semester",
         icon: createElement(WalletOutlined),
         element: <AcademicSemester />
+      },
+      {
+        key: 8,
+        path: 'create-academic-faculty',
+        label: "Create A. Faculty",
+        icon: createElement(ExperimentOutlined),
+        element: <CreateAcademicFaculty />
+      },
+      {
+        key: 9,
+        path: 'runnig-academic-faculty',
+        label: "Runnig A. Faculty",
+        icon: createElement(WalletOutlined),
+        element: <AcademicFaculty />
+      },
+      {
+        key: 10,
+        path: 'create-academic-department',
+        label: "Create A. Department",
+        icon: createElement(ExperimentOutlined),
+        element: <CreateAcademicDepartment />
+      },
+      {
+        key: 11,
+        path: 'runnig-academic-department',
+        label: "Runnig A. Department",
+        icon: createElement(WalletOutlined),
+        element: <AcademicDepartment />
       },
     ]
   }

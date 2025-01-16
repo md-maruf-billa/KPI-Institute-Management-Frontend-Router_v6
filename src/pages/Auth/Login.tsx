@@ -1,5 +1,4 @@
-import { Button, Form, Input } from 'antd'
-import { useForm } from 'react-hook-form'
+import { Button } from 'antd'
 import { useLoginMutation } from '../../redux/features/auth/authAPI'
 import { jwtDecode } from 'jwt-decode'
 import { useAppDispatch } from '../../redux/hooks'
@@ -47,7 +46,7 @@ const Login = () => {
             <h1>Admin Login</h1>
             <CustomInput size='large' name='id' label='Enter Your User Id' />
             <CustomInput size='large' name='password' label='Enter Your password' />
-            <Button type='primary' htmlType='submit'>
+            <Button style={{width:"100%"}} size='large' type='primary' htmlType='submit'>
               Log in
             </Button>
           </div>
