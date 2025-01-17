@@ -19,7 +19,7 @@ export const semesterStartYear = [0, 1, 2, 3, 4, 5].map(year => ({
   value: String(currentYear + year)
 }))
 
-const monthConstant = [
+export const monthConstant = [
   'January',
   'February',
   'March',

@@ -1,12 +1,19 @@
+import { TAcademicParams } from '../../../Types';
 import { baseAPI } from '../../api/baseAPI'
 
 const academicManagementAPI = baseAPI.injectEndpoints({
   endpoints: builder => ({
     getAllAcademicSemesters: builder.query({
-      query: () => ({
-        url: '/academic-semesters',
-        method: 'GET'
-      })
+      query: params => {
+        const queries = new URLSearchParams();
+        params.forEach((element:TAcademicParams) => queries.append(element.name, element.value));
+
+        return {
+          url: '/academic-semesters',
+          method: 'GET',
+          params: queries
+        }
+      }
     }),
     createAcademicSemester: builder.mutation({
       query: payload => ({
