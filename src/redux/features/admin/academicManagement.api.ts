@@ -7,8 +7,18 @@ const academicManagementAPI = baseAPI.injectEndpoints({
         url: '/academic-semesters',
         method: 'GET'
       })
+    }),
+    createAcademicSemester: builder.mutation({
+      query: payload => ({
+        url: '/academic-semesters/create-academic-semester',
+        method: 'POST',
+        body: payload
+      })
     })
   })
 })
 
-export const {useGetAllAcademicSemestersQuery} = academicManagementAPI;
+export const {
+  useGetAllAcademicSemestersQuery,
+  useCreateAcademicSemesterMutation
+} = academicManagementAPI

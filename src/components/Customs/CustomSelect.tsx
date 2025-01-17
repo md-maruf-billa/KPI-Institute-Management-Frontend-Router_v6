@@ -1,10 +1,12 @@
 import { Form, Select } from "antd";
+import { SizeType } from "antd/es/config-provider/SizeContext";
 import { Controller } from "react-hook-form";
 
 type TSelectProps = {
       label: string,
       name: string,
-      placeholder?:string,
+      placeholder?: string,
+      size?: SizeType,
       selectOptions: {
             value: string,
             label: string,
@@ -13,14 +15,15 @@ type TSelectProps = {
 }
 
 
-const CustomSelect = ({ label, name, selectOptions , placeholder}: TSelectProps) => {
+const CustomSelect = ({ label, name, selectOptions, placeholder, size }: TSelectProps) => {
       return (
             <Controller
                   name={name}
-                  render={({ field }) => <Form.Item label={label}>
-                        <Select {...field} defaultValue={placeholder || "Pick one"} style={{ width: "100%" }} options={
+                  render={({ field , fieldState}) => <Form.Item label={label}>
+                        <Select size={size || "middle"} {...field} defaultValue={placeholder || "Pick one"} style={{ width: "100%" }} options={
                               selectOptions
                         } />
+                        {fieldState.error && <small style={{ color: "red" }}>{fieldState.error.message}</small>}
                   </Form.Item>}
             />
 
