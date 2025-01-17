@@ -35,7 +35,10 @@
     background-color: white;
     
 }
-
+.stylish-font{
+    font-family: "Playwrite IN", serif;
+    font-weight: bold;
+}
 .login-form-content h1{
     font-family: "Playwrite IN", serif;
     font-weight: bold;

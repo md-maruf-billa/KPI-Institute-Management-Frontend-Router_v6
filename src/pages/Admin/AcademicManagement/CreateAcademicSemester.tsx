@@ -30,7 +30,7 @@ const CreateAcademicSemester = () => {
       return (
             <Flex justify="center" align="center" style={{ minHeight: "100%" }}>
                   <Col span={6} style={{ border: "1px solid blue", padding: "20px", borderRadius: "8px" }}>
-                        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Create Academic Semester</h1>
+                        <h1  style={{ textAlign: "center", marginBottom: "20px" }}>Create Academic Semester</h1>
 
                         <CustomForm onSubmit={handelCreateAcademicSemester} resolver={zodResolver(academicSemesterSchema)}>
                               <CustomSelect size="large" selectOptions={semesterNameConstants} placeholder="Choose a Name" name="code" label="Semester Name" />

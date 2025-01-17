@@ -13,7 +13,6 @@ interface DataType {
     endMonth: string;
 }
 
-
 const monthFilterData = monthConstant.map((month: string) => ({ text: month, value: month }));
 const yearFilterData = semesterStartYear.map((year) => ({ text: year.label, value: year.value }));
 const semesterNameFilterDate = semesterNameConstants.map((semester) => ({ text: semester.label, value: semester.label }))
@@ -40,7 +39,6 @@ const columns: TableColumnsType<DataType> = [
         title: 'Start Month',
         dataIndex: 'startMonth',
         filters: monthFilterData
-
     },
     {
         title: 'End Month',
@@ -50,12 +48,9 @@ const columns: TableColumnsType<DataType> = [
     },
 ];
 
-
-
-
 const AcademicSemester = () => {
     const [params, setParams] = useState<TAcademicParams[]>([])
-    const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
+    const onChange: TableProps<DataType>['onChange'] = (_pagination, filters, _sorter, extra) => {
         const tempParams: TAcademicParams[] = [];
         if (extra.action === "filter") {
             filters.name?.forEach(it => tempParams.push({ name: "name", value: String(it) }))
@@ -74,15 +69,17 @@ const AcademicSemester = () => {
         startMonth: semester.startMonth,
         endMonth: semester.endMonth,
     }))
-
     return (
-        <Table<DataType>
-            columns={columns}
-            dataSource={semesterTableData}
-            onChange={onChange}
-            showSorterTooltip={{ target: 'sorter-icon' }}
-            loading={isLoading || isFetching}
-        />
+        <>
+        <h1 className="stylish-font" style={{textAlign:"center", marginBottom:"30px"}}>All Runnig Semester Data</h1>
+            <Table<DataType>
+                columns={columns}
+                dataSource={semesterTableData}
+                onChange={onChange}
+                showSorterTooltip={{ target: 'sorter-icon' }}
+                loading={isLoading || isFetching}
+            />
+        </>
     );
 
 };

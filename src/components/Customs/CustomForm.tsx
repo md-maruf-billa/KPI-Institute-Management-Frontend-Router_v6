@@ -1,6 +1,6 @@
 import { Form } from "antd";
 import { ReactNode } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FieldValues, FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 type TFromProps = {
       onSubmit: any,
@@ -11,9 +11,13 @@ type TFromProps = {
 
 const CustomForm = ({ onSubmit, children, resolver }: TFromProps) => {
       const methods = useForm({ resolver })
+      const submitForm:SubmitHandler<FieldValues> =(data)=>{
+            onSubmit(data);
+            methods.reset()
+      }
       return (
             <FormProvider {...methods} >
-                  <Form layout="vertical" onFinish={methods.handleSubmit(onSubmit)}>
+                  <Form layout="vertical" onFinish={methods.handleSubmit(submitForm)}>
                         {children}
                   </Form>
             </FormProvider>
