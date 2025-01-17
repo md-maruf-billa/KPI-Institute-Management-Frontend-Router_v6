@@ -22,6 +22,10 @@ export type TSemesterInfo = {
 }
 
 export type TAcademicParams = {
-    name: string,
-    value: string;
+  name: string
+  value: string
+}
+export type TAcademicFaculty = {
+  _id: string
+  name: string
 }

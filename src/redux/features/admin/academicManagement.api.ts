@@ -24,6 +24,12 @@ const academicManagementAPI = baseAPI.injectEndpoints({
         body: payload
       })
     }),
+    getAllAcademicFaculty: builder.query({
+      query:()=>({
+        url:"/academic-faculties",
+        method: 'GET'
+      })
+    }),
     createAcademicFaculty: builder.mutation({
       query: payload => ({
         url: '/academic-faculties/create-academic-faculty',
@@ -37,5 +43,6 @@ const academicManagementAPI = baseAPI.injectEndpoints({
 export const {
   useGetAllAcademicSemestersQuery,
   useCreateAcademicSemesterMutation,
-  useCreateAcademicFacultyMutation
+  useCreateAcademicFacultyMutation,
+  useGetAllAcademicFacultyQuery
 } = academicManagementAPI
