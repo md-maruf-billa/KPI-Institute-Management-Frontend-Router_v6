@@ -31,6 +31,12 @@ export type TAcademicFaculty = {
 }
 
 export type TAcademicDepartment = {
+  _id?: string
   name: string
   subjects: string[]
+  facultyName?: string
+  academicFaculty?: {
+    _id?: string
+    name: string
+  }
 }
