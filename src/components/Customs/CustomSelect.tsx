@@ -6,6 +6,7 @@ type TSelectProps = {
       label: string,
       name: string,
       placeholder?: string,
+      disabled?: boolean,
       size?: SizeType,
       selectOptions: {
             value: string,
@@ -15,14 +16,14 @@ type TSelectProps = {
 }
 
 
-const CustomSelect = ({ label, name, selectOptions, placeholder, size }: TSelectProps) => {
+const CustomSelect = ({ label, name, selectOptions, placeholder, size, disabled }: TSelectProps) => {
       return (
             <Controller
                   name={name}
-                  render={({ field , fieldState}) => <Form.Item label={label}>
+                  render={({ field, fieldState }) => <Form.Item label={label}>
                         <Select size={size || "middle"} {...field} defaultValue={placeholder || "Pick one"} style={{ width: "100%" }} options={
                               selectOptions
-                        } />
+                        } disabled={disabled} />
                         {fieldState.error && <small style={{ color: "red" }}>{fieldState.error.message}</small>}
                   </Form.Item>}
             />
