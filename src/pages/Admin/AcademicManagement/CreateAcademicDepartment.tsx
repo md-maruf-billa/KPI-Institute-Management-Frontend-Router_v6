@@ -5,13 +5,14 @@ import { academicDepartmentsContant } from "../../../constants/global.constant";
 import { Button, Col, Flex, Form, Select } from "antd";
 import { useEffect, useState } from "react";
 import { TAcademicDepartment, TAcademicFaculty } from "../../../Types";
-import { useGetAllAcademicFacultyQuery } from "../../../redux/features/admin/academicManagement.api";
+import { useCreateAcademicDepartmentMutation, useGetAllAcademicFacultyQuery } from "../../../redux/features/admin/academicManagement.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicFacultySchema } from "../../../Schemas/academicManagement.schema";
+import { toast } from "sonner";
 
 const CreateAcademicDepartment = () => {
       const { data } = useGetAllAcademicFacultyQuery(undefined);
-
+      const [createAcademicDepatment] = useCreateAcademicDepartmentMutation();
       const [departmentField, setDepartmentField] = useState("");
       const [departmentFieldOptions, setDepartmentFieldOptions] = useState<{ label: string; value: string }[]>([]);
       const departmentSelectOptions = academicDepartmentsContant.map(department => ({ label: department.name, value: department.name }))
@@ -34,16 +35,22 @@ const CreateAcademicDepartment = () => {
       }, [departmentField]);
 
 
-      const handleSubmit: SubmitHandler<FieldValues> = data => {
+      const handleSubmit: SubmitHandler<FieldValues> = async (data) => {
+            const toastId = toast.loading("Academic Department Creating........")
             const refactorData = {
                   name: `${departmentField} ( ${data.name} )`,
                   academicFaculty: data.academicFaculty
             }
-            console.log(refactorData)
+            const res = await createAcademicDepatment(refactorData);
+            if (res?.data?.success) {
+                  toast.success("Academic Department created successfully", { id: toastId })
+            } else {
+                  toast.error("Failed to create Academic Department", { id: toastId })
+            }
       }
       return (
-            <Flex justify="center" align="center" style={{minHeight:"100%"}}>
-                  <Col span={8} style={{border:"1px solid blue", padding:"40px" , borderRadius:"16px"}} >
+            <Flex justify="center" align="center" style={{ minHeight: "100%" }}>
+                  <Col span={8} style={{ border: "1px solid blue", padding: "40px", borderRadius: "16px" }} >
                         <h1 style={{ textAlign: "center", marginBottom: "30px" }}>Create Academic Department</h1>
 
                         <CustomForm onSubmit={handleSubmit} resolver={zodResolver(academicFacultySchema)}>

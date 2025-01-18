@@ -25,8 +25,8 @@ const academicManagementAPI = baseAPI.injectEndpoints({
       })
     }),
     getAllAcademicFaculty: builder.query({
-      query:()=>({
-        url:"/academic-faculties",
+      query: () => ({
+        url: '/academic-faculties',
         method: 'GET'
       })
     }),
@@ -36,6 +36,19 @@ const academicManagementAPI = baseAPI.injectEndpoints({
         method: 'POST',
         body: payload
       })
+    }),
+    createAcademicDepartment: builder.mutation({
+      query: payload => ({
+        url: '/academic-departments/create-academic-department',
+        method: 'POST',
+        body: payload
+      })
+    }),
+    getAllAcademicDepartment: builder.query({
+      query: () => ({
+        url: '/academic-departments',
+        method: 'GET'
+      })
     })
   })
 })
@@ -44,5 +57,7 @@ export const {
   useGetAllAcademicSemestersQuery,
   useCreateAcademicSemesterMutation,
   useCreateAcademicFacultyMutation,
-  useGetAllAcademicFacultyQuery
+  useGetAllAcademicFacultyQuery,
+  useCreateAcademicDepartmentMutation,
+  useGetAllAcademicDepartmentQuery
 } = academicManagementAPI
