@@ -40,3 +40,37 @@ export type TAcademicDepartment = {
     name: string
   }
 }
+
+export type TStudentInfo = {
+  student: {
+    name: {
+      firstName: string
+      middleName: string
+      lastName: string
+    }
+    gender: string
+    dateOfBirth: string
+    email: string
+    contactNo: string
+    emergencyContactNo: string
+    bloogGroup: string
+    presentAddress: string
+    permanentAddress: string
+    guardian: {
+      fatherName: string
+      fatherOccupation: string
+      fatherContactNo: string
+      motherName: string
+      motherOccupation: string
+      motherContactNo: string
+    }
+    localGuardian: {
+      name: string
+      occupation: string
+      contactNo: string
+      address: string
+    }
+    admissionSemester: string
+    academicDepartment: string
+  }
+}

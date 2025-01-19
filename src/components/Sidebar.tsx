@@ -45,6 +45,7 @@ const Sidebar = () => {
     <Sider
       breakpoint='lg'
       collapsedWidth='0'
+      style={{height:"100vh", position:"fixed"}}
 
     >
       <Header></Header>

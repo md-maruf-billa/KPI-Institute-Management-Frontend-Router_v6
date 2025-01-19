@@ -21,7 +21,7 @@ const CustomSelect = ({ label, name, selectOptions, placeholder, size, disabled 
             <Controller
                   name={name}
                   render={({ field, fieldState }) => <Form.Item label={label}>
-                        <Select size={size || "middle"} {...field} defaultValue={placeholder || "Pick one"} style={{ width: "100%" }} options={
+                        <Select size={size || "middle"} {...field} placeholder={placeholder || "Pick one"} style={{ width: "100%" }} options={
                               selectOptions
                         } disabled={disabled} />
                         {fieldState.error && <small style={{ color: "red" }}>{fieldState.error.message}</small>}
