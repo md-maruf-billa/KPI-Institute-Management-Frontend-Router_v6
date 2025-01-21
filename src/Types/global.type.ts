@@ -21,7 +21,7 @@ export type TSemesterInfo = {
   endMonth: string
 }
 
-export type TAcademicParams = {
+export type TAPIParams = {
   name: string
   value: string
 }

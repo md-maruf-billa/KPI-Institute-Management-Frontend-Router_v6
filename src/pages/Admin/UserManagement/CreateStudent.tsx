@@ -1,16 +1,16 @@
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
-import CustomForm from "../../components/Customs/CustomForm";
 import { Button, Col, Divider, Flex, Form, Input } from "antd";
-import CustomInput from "../../components/Customs/CustomInput";
-import CustomSelect from "../../components/Customs/CustomSelect";
-import { bloodGroupConstant, genderConstant } from "../../constants/global.constant";
-import CustomDatePicker from "../../components/Customs/CustomDatePicker";
-import { useGetAllAcademicDepartmentQuery, useGetAllAcademicSemestersQuery } from "../../redux/features/admin/academicManagement.api";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { studentSchema } from "../../Schemas/userManagement.schema";
-import { useCreateStudentMutation } from "../../redux/features/admin/userManagement.api";
 import { toast } from "sonner";
+import { useCreateStudentMutation } from "../../../redux/features/admin/userManagement.api";
+import { useGetAllAcademicDepartmentQuery, useGetAllAcademicSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
+import { bloodGroupConstant, genderConstant } from "../../../constants/global.constant";
+import CustomForm from "../../../components/Customs/CustomForm";
+import { studentSchema } from "../../../Schemas/userManagement.schema";
+import CustomInput from "../../../components/Customs/CustomInput";
+import CustomSelect from "../../../components/Customs/CustomSelect";
+import CustomDatePicker from "../../../components/Customs/CustomDatePicker";
 
 
 const CreateStudent = () => {
@@ -49,6 +49,7 @@ const CreateStudent = () => {
             formData.append("file", imageFile);
         }
         const res = await createStudent(formData);
+        console.log(res)
         if (res?.data?.success) {
             toast.success("Student created successfully", { id: toastId })
         } else {

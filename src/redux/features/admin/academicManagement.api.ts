@@ -1,4 +1,4 @@
-import { TAcademicParams } from '../../../Types'
+import { TAPIParams } from '../../../Types'
 import { baseAPI } from '../../api/baseAPI'
 
 const academicManagementAPI = baseAPI.injectEndpoints({
@@ -7,7 +7,7 @@ const academicManagementAPI = baseAPI.injectEndpoints({
       query: params => {
         const queries = new URLSearchParams()
         if (params) {
-          params?.forEach((element: TAcademicParams) =>
+          params?.forEach((element: TAPIParams) =>
             queries.append(element.name, element.value)
           )
         }

@@ -7,9 +7,8 @@ import {
   WalletOutlined,
   ExperimentOutlined
 } from '@ant-design/icons'
-import CreateAdmin from '../pages/Admin/CreateAdmin'
-import CreateFaculty from '../pages/Admin/CreateFaculty'
-import CreateStudent from '../pages/Admin/CreateStudent'
+import CreateAdmin from '../pages/Admin/UserManagement/CreateAdmin'
+import CreateFaculty from '../pages/Admin/UserManagement/CreateFaculty'
 import AdminOverview from '../pages/Admin/AdminOverview'
 import AcademicSemester from '../pages/Admin/AcademicManagement/AcademicSemester'
 import CreateAcademicSemester from '../pages/Admin/AcademicManagement/CreateAcademicSemester'
@@ -17,6 +16,8 @@ import CreateAcademicFaculty from '../pages/Admin/AcademicManagement/CreateAcade
 import AcademicFaculty from '../pages/Admin/AcademicManagement/AcademicFaculty'
 import CreateAcademicDepartment from '../pages/Admin/AcademicManagement/CreateAcademicDepartment'
 import AcademicDepartment from '../pages/Admin/AcademicManagement/AcademicDepartment'
+import CreateStudent from '../pages/Admin/UserManagement/CreateStudent'
+import Students from '../pages/Admin/UserManagement/Students'
 
 
 
@@ -56,6 +57,13 @@ export const AdminRoutesPaths = [
         label: "Create Student",
         icon: createElement(UserOutlined),
         element: <CreateStudent />
+      },
+      {
+        key: 12,
+        path: 'student-overview',
+        label: "All Students",
+        icon: createElement(UserOutlined),
+        element: <Students />
       }
     ]
   },

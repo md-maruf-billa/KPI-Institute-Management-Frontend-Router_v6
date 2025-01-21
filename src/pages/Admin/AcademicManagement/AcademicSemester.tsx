@@ -1,6 +1,6 @@
 import { Table, TableColumnsType, TableProps } from "antd";
 import { useGetAllAcademicSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
-import { TAcademicParams, TSemesterInfo } from "../../../Types";
+import { TAPIParams, TSemesterInfo } from "../../../Types";
 import { monthConstant, semesterNameConstants, semesterStartYear } from "../../../constants/global.constant";
 import { useState } from "react";
 
@@ -49,9 +49,9 @@ const columns: TableColumnsType<DataType> = [
 ];
 
 const AcademicSemester = () => {
-    const [params, setParams] = useState<TAcademicParams[]>([])
+    const [params, setParams] = useState<TAPIParams[]>([])
     const onChange: TableProps<DataType>['onChange'] = (_pagination, filters, _sorter, extra) => {
-        const tempParams: TAcademicParams[] = [];
+        const tempParams: TAPIParams[] = [];
         if (extra.action === "filter") {
             filters.name?.forEach(it => tempParams.push({ name: "name", value: String(it) }))
             filters.year?.forEach(it => tempParams.push({ name: "year", value: String(it) }))
@@ -71,7 +71,7 @@ const AcademicSemester = () => {
     }))
     return (
         <>
-        <h1 className="stylish-font" style={{textAlign:"center", marginBottom:"30px"}}>All Runnig Semester Data</h1>
+            <h1 className="stylish-font" style={{ textAlign: "center", marginBottom: "30px" }}>All Runnig Semester Data</h1>
             <Table<DataType>
                 columns={columns}
                 dataSource={semesterTableData}
