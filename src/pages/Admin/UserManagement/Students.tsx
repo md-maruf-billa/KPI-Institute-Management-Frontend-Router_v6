@@ -1,5 +1,5 @@
 import { useGetAllStudentsQuery } from "../../../redux/features/admin/userManagement.api";
-import { Avatar, Button, Image, Space, Table, TableColumnsType, TableProps } from "antd";
+import { Avatar, Button, Flex, Image, Pagination, Select, Space, Table, TableColumnsType, TableProps } from "antd";
 import { TAPIParams, TStudent } from "../../../Types";
 import { useState } from "react";
 
@@ -66,9 +66,11 @@ const columns: TableColumnsType<DataType> = [
 const Students = () => {
       // local state
       const [params, setParams] = useState<TAPIParams[]>([])
+      const [currentPage, setCurrentPage] = useState<number>(1);
+      const [dataPerPage, setDataPerPage] = useState<number>(5);
 
       // fetch data
-      const { data, isLoading, isFetching } = useGetAllStudentsQuery(undefined)
+      const { data, isLoading, isFetching } = useGetAllStudentsQuery([{ name: "sort", value: "id" }, { name: "page", value: currentPage }, { name: "limit", value: dataPerPage }, ...params])
       const studentData = data?.data?.map((student: DataType) => ({
             key: student._id,
             profileImg: student.profileImg,
@@ -96,9 +98,25 @@ const Students = () => {
                         columns={columns}
                         dataSource={studentData}
                         onChange={onChange}
-                        showSorterTooltip={{ target: 'sorter-icon' }}
                         loading={isLoading || isFetching}
+                        pagination={false}
                   />
+                  <Flex justify="center" align="center" style={{ margin: "20px 0" }}>
+                        <Pagination onChange={(page) => setCurrentPage(page)} pageSize={dataPerPage} defaultCurrent={currentPage} total={data?.meta?.total} />
+                        <Select
+                              placeholder="data/page"
+                              defaultValue={dataPerPage}
+                              style={{ width: 120 }}
+                              onChange={(e) => setDataPerPage(e)}
+                              options={[
+                                    { value: 5, label: '5/page' },
+                                    { value: 10, label: '10/page' },
+                                    { value: 20, label: '20/page' },
+                                    { value: 100, label: '100/page' },
+
+                              ]}
+                        />
+                  </Flex>
             </>
       );
 

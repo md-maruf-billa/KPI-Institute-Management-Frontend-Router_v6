@@ -11,6 +11,7 @@ import { studentSchema } from "../../../Schemas/userManagement.schema";
 import CustomInput from "../../../components/Customs/CustomInput";
 import CustomSelect from "../../../components/Customs/CustomSelect";
 import CustomDatePicker from "../../../components/Customs/CustomDatePicker";
+import { TResponse } from "../../../Types";
 
 
 const CreateStudent = () => {
@@ -48,12 +49,12 @@ const CreateStudent = () => {
         if (imageFile) {
             formData.append("file", imageFile);
         }
-        const res = await createStudent(formData);
+        const res = await createStudent(formData) as TResponse;
         console.log(res)
         if (res?.data?.success) {
             toast.success("Student created successfully", { id: toastId })
         } else {
-            toast.error("Failed to create Student", { id: toastId })
+            toast.error(res?.error?.data?.message, { id: toastId })
         }
 
     }
